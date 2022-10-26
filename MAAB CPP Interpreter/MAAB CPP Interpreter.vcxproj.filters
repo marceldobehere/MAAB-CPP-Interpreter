@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="maabTask">
+      <UniqueIdentifier>{ff3f8dbe-afe2-45fa-8e2b-f38a51c4de4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs">
+      <UniqueIdentifier>{3372c8e2-1bc2-4f3d-86d2-e8980731945f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs\Task Stuff">
+      <UniqueIdentifier>{d3fa296a-136a-498c-87fc-e8175136bff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs\window">
+      <UniqueIdentifier>{14a4badc-bb18-491f-8b0d-bbea0796321e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs\Instances">
+      <UniqueIdentifier>{38c49b0f-ae4a-4866-a333-84d0c09f0d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs\Instances\defaultInstance">
+      <UniqueIdentifier>{6b8c850d-a162-463d-aa71-a0f6cc8c029c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs\Instances\terminalInstance">
+      <UniqueIdentifier>{27bea258-85c2-4838-a4cc-da8917282aa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs\Instances\newTerminalInstance">
+      <UniqueIdentifier>{4d105453-2693-4234-bfe7-8cf70f7f8bb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs\OSDATA">
+      <UniqueIdentifier>{94d17a20-44f1-47ea-a33e-fa27822fd3e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs\Rendering">
+      <UniqueIdentifier>{c0e7a000-0719-4573-93b3-4536a131f49d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs\Instances\cstrTools">
+      <UniqueIdentifier>{a55fc639-5a22-42aa-b965-02848719f8e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs\Instances\heap">
+      <UniqueIdentifier>{fc76f0c8-9b9e-4326-af52-f4124e5a601e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs\interrupts">
+      <UniqueIdentifier>{7a0589e9-8018-47d9-958e-9240ee38cbff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs\Instances\cstr">
+      <UniqueIdentifier>{ccb37aea-c520-411b-b299-45b883147184}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="task.cpp">
+      <Filter>stubs\Task Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="maabTask.cpp">
+      <Filter>maabTask</Filter>
+    </ClCompile>
+    <ClCompile Include="terminalInstance.cpp">
+      <Filter>stubs\Instances\terminalInstance</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>stubs\window</Filter>
+    </ClCompile>
+    <ClCompile Include="defaultInstance.cpp">
+      <Filter>stubs\Instances\defaultInstance</Filter>
+    </ClCompile>
+    <ClCompile Include="newTerminalInstance.cpp">
+      <Filter>stubs\Instances\newTerminalInstance</Filter>
+    </ClCompile>
+    <ClCompile Include="osdata.cpp">
+      <Filter>stubs\OSDATA</Filter>
+    </ClCompile>
+    <ClCompile Include="userdata.cpp">
+      <Filter>stubs\OSDATA</Filter>
+    </ClCompile>
+    <ClCompile Include="cstrTools.cpp">
+      <Filter>stubs\Instances\cstrTools</Filter>
+    </ClCompile>
+    <ClCompile Include="heap.cpp">
+      <Filter>stubs\Instances\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="panic.cpp">
+      <Filter>stubs\interrupts</Filter>
+    </ClCompile>
+    <ClCompile Include="cstr.cpp">
+      <Filter>stubs\Instances\cstr</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="task.h">
+      <Filter>stubs\Task Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="maabTask.h">
+      <Filter>maabTask</Filter>
+    </ClInclude>
+    <ClInclude Include="terminalInstance.h">
+      <Filter>stubs\Instances\terminalInstance</Filter>
+    </ClInclude>
+    <ClInclude Include="window.h">
+      <Filter>stubs\window</Filter>
+    </ClInclude>
+    <ClInclude Include="defaultInstance.h">
+      <Filter>stubs\Instances\defaultInstance</Filter>
+    </ClInclude>
+    <ClInclude Include="newTerminalInstance.h">
+      <Filter>stubs\Instances\newTerminalInstance</Filter>
+    </ClInclude>
+    <ClInclude Include="consoleChar.h">
+      <Filter>stubs\Instances\newTerminalInstance</Filter>
+    </ClInclude>
+    <ClInclude Include="osdata.h">
+      <Filter>stubs\OSDATA</Filter>
+    </ClInclude>
+    <ClInclude Include="userdata.h">
+      <Filter>stubs\OSDATA</Filter>
+    </ClInclude>
+    <ClInclude Include="Cols.h">
+      <Filter>stubs\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="cstrTools.h">
+      <Filter>stubs\Instances\cstrTools</Filter>
+    </ClInclude>
+    <ClInclude Include="heap.h">
+      <Filter>stubs\Instances\heap</Filter>
+    </ClInclude>
+    <ClInclude Include="panic.h">
+      <Filter>stubs\interrupts</Filter>
+    </ClInclude>
+    <ClInclude Include="cstr.h">
+      <Filter>stubs\Instances\cstr</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
