@@ -5,6 +5,7 @@ using namespace std;
 
 #include "maabTask.h"
 #include "terminalInstance.h"
+#include "newTerminalInstance.h"
 
 
 int main(int argc, char* argv[]) 
@@ -70,6 +71,7 @@ int main(int argc, char* argv[])
 	cout << "+ > Initing Task...\n";
 	TaskMAAB* maabTask = new TaskMAAB(lSize + 1, (uint8_t*)buffer, testWindow);
 
+	//((NewTerminalInstance*)term->newTermInstance)->Println("This is a test {}!", "LMAO", Colors.bred);
 
 	cout << "\n\n> Running Stuff...\n";
 
