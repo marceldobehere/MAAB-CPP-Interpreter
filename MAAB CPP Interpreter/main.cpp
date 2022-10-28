@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 //#include <filesystem>
 using namespace std;
 
@@ -10,15 +11,27 @@ using namespace std;
 
 int main(int argc, char* argv[]) 
 {
+	if (argc != 2)
+	{
+		cout << "Invalid Arguments!\n";
+		string response;
+		getline(cin, response);
+		return -1;
+	}
+	const char* fName = argv[1];
+
+
+
+
 	FILE* pFile;
 	long lSize;
 	char* buffer;
 	size_t result;
 
 
-	cout << "> Reading File...\n";
+	cout << "> Reading File \"" << fName << "\"...\n";
 	#pragma warning(disable:4096)
-	fopen_s(&pFile, "test.maab", "rb");
+	fopen_s(&pFile, fName, "rb");
 	if (pFile == NULL) { fputs("File error", stderr); exit(1); }
 
 	// obtain file size:
@@ -28,8 +41,7 @@ int main(int argc, char* argv[])
 	cout << "+ > Filesize: " << lSize << " bytes.\n";
 
 	// allocate memory to contain the whole file:
-	buffer = (char*)malloc(sizeof(char) * lSize + 1);
-	buffer[lSize] = 0;
+	buffer = (char*)malloc(sizeof(char) * lSize);
 	if (buffer == NULL) { fputs("Memory error", stderr); exit(2); }
 
 	// copy the file into the buffer:
@@ -69,7 +81,7 @@ int main(int argc, char* argv[])
 	term->SetWindow(testWindow);
 
 	cout << "+ > Initing Task...\n";
-	TaskMAAB* maabTask = new TaskMAAB(lSize + 1, (uint8_t*)buffer, testWindow, term);
+	TaskMAAB* maabTask = new TaskMAAB(lSize, (uint8_t*)buffer, testWindow, term);
 
 	//((NewTerminalInstance*)term->newTermInstance)->Println("This is a test {}!", "LMAO", Colors.bred);
 
@@ -93,4 +105,9 @@ int main(int argc, char* argv[])
 
 
 	cout << "\n\n\nEnd.";
+	{
+		string response;
+		getline(cin, response);
+		return 0;
+	}
 }

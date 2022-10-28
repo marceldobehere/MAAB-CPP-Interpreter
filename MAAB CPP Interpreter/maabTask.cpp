@@ -137,14 +137,6 @@ void TaskMAAB::Do()
 			instrPointer = jumpAddr;
 		}
 
-
-
-
-
-
-
-
-
 		else if (instr == 50) //syscall
 		{
 			if (instrPointer + 2 >= memLen)
