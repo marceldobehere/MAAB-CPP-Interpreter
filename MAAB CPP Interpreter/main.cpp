@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
 
 	// terminate
 	fclose(pFile);
-	free(buffer);
+	//free(buffer);
 
 
 
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 	term->SetWindow(testWindow);
 
 	cout << "+ > Initing Task...\n";
-	TaskMAAB* maabTask = new TaskMAAB(lSize + 1, (uint8_t*)buffer, testWindow);
+	TaskMAAB* maabTask = new TaskMAAB(lSize + 1, (uint8_t*)buffer, testWindow, term);
 
 	//((NewTerminalInstance*)term->newTermInstance)->Println("This is a test {}!", "LMAO", Colors.bred);
 
@@ -78,6 +78,17 @@ int main(int argc, char* argv[])
 	while (!maabTask->GetDone())
 		maabTask->Do();
 
+
+
+	cout << "\n\n";
+
+	if (maabTask->errCode == 0)
+		cout << "Program exited with no errors!\n";
+	else
+	{
+		cout << "Program exited with error code: " << maabTask->errCode << "!\n";
+		cout << "Error Message:\n" << maabTask->errMsg << "\n";
+	}
 
 
 
