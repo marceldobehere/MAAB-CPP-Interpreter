@@ -92,17 +92,6 @@ int main(int argc, char* argv[])
 
 
 
-	cout << "\n\n";
-
-	if (maabTask->errCode == 0)
-		cout << "Program exited with no errors!\n";
-	else
-	{
-		cout << "Program exited with error code: " << maabTask->errCode << "!\n";
-		cout << "Error Message:\n" << maabTask->errMsg << "\n";
-	}
-
-
 
 	cout << "\n\n\nEnd.";
 	{

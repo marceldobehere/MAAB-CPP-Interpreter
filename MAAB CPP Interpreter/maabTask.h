@@ -15,7 +15,7 @@ private:
     Window* window;
     NewTerminalInstance* newTerm;
     TerminalInstance* dTerm;
-    int cyclesPerCall = 100;
+    int cyclesPerCall = 1000;
 
     uint64_t instrPointer = 0;
     uint32_t defCol = Colors.white;
@@ -23,6 +23,7 @@ private:
     uint64_t subLastPos[100];
     int64_t subDeepness = 0;
     int64_t maxSubDeepness = 90;
+    bool programEnded = false;
 
     enum DatatypeNumber : uint8_t
     {
@@ -38,8 +39,8 @@ private:
         DOUBLE = 9
     };
 
-    const uint8_t datatypeSizes[10] = 
-    {4,4, 2,2, 8,8, 1,1, 4,8};
+    const uint8_t datatypeSizes[10] =
+    { 4,4, 2,2, 8,8, 1,1, 4,8 };
 
     enum OpNumber : uint8_t
     {
@@ -83,4 +84,4 @@ public:
 
 };
 
-//TaskBF* NewBFTask(const char* code, Window* window);
+TaskMAAB* NewMAABTask(uint32_t codeLen, uint8_t* code, Window* window, TerminalInstance* newTerm);
