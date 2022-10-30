@@ -14,10 +14,10 @@ TaskMAAB::TaskMAAB(uint32_t codeLen, uint8_t* code, Window* window, TerminalInst
 	newTerm = (NewTerminalInstance*)(term->newTermInstance);
 
 
-	this->code = (uint8_t*)malloc(codeLen);
-	for (int i = 0; i < codeLen; i++)
-		this->code[i] = code[i];
-	this->codeLen = codeLen;
+	//this->code = (uint8_t*)malloc(codeLen);
+	//for (int i = 0; i < codeLen; i++)
+	//	this->code[i] = code[i];
+	//this->codeLen = codeLen;
 
 
 	memLen = 2000000;
@@ -28,16 +28,16 @@ TaskMAAB::TaskMAAB(uint32_t codeLen, uint8_t* code, Window* window, TerminalInst
 
 
 	newTerm->Println("Data:");
-	for (int i = 0; i < this->codeLen; i++)
+	for (int i = 0; i < codeLen; i++)
 	{
-		mem[i] = this->code[i];
+		mem[i] = code[i];
 		newTerm->Print("{} ", to_string(mem[i]), defCol);
 	}
 	newTerm->Println();
 
 	waitInput = false;
 	done = false;
-	type = TaskType::BF;
+	type = TaskType::MAAB;
 
 
 	instrPointer = 0;
@@ -1425,6 +1425,6 @@ void TaskMAAB::Math(OpNumber opNum, DatatypeNumber typeNum, uint64_t addr1, uint
 
 void TaskMAAB::Free()
 {
-	free((void*)code);
+	//free((void*)code);
 	free((void*)mem);
 }

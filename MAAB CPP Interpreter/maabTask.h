@@ -8,9 +8,6 @@
 class TaskMAAB : public Task
 {
 private:
-    uint8_t* code;
-    uint32_t codeLen;
-
     uint8_t* mem;
     uint64_t memLen;
 
