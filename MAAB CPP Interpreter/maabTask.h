@@ -4,12 +4,16 @@
 #include "TerminalInstance.h"
 #include "newTerminalInstance.h"
 #include <stdint.h>
+#include "maabMemHandler.h"
 
 class TaskMAAB : public Task
 {
 private:
     uint8_t* mem;
     uint64_t memLen;
+
+    MAAB_MEM::MbMemHandler* memHandler;
+
 
     bool waitInput;
     Window* window;

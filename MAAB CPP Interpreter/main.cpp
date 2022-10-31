@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
 	while (!maabTask->GetDone())
 		maabTask->Do();
 
-
+	maabTask->Free();
 
 
 	cout << "\n\n\nEnd.";

@@ -7,6 +7,7 @@
 #include "terminalInstance.h"
 #include "cstr.h"
 
+
 TaskMAAB::TaskMAAB(uint32_t codeLen, uint8_t* code, Window* window, TerminalInstance* term)
 {
 	this->window = window;
@@ -26,15 +27,22 @@ TaskMAAB::TaskMAAB(uint32_t codeLen, uint8_t* code, Window* window, TerminalInst
 	for (int i = 0; i < memLen; i++)
 		mem[i] = 0;
 
-
-
 	//newTerm->Println("Data:");
 	for (int i = 0; i < codeLen; i++)
 	{
 		mem[i] = code[i];
 		//newTerm->Print("{} ", to_string(mem[i]), defCol);
 	}
-	newTerm->Println();
+	//newTerm->Println();
+
+	newTerm->Println("MEM 1: {}", to_string((uint64_t)mem), defCol);
+
+	memHandler = (MAAB_MEM::MbMemHandler*)malloc(sizeof(MAAB_MEM::MbMemHandler));
+	*memHandler = MAAB_MEM::MbMemHandler((void*)((uint64_t)mem + codeLen), memLen - codeLen, codeLen);
+
+	newTerm->Println("MEM 2: {}", to_string((uint64_t)memHandler->buffer), defCol);
+
+
 
 	waitInput = false;
 	programEnded = false;
@@ -371,7 +379,7 @@ void TaskMAAB::Do()
 			{
 				if (syscall2 == 1)
 				{
-					uint8_t byteToPrint = *((uint64_t*)((uint64_t)mem + instrPointer + 3));
+					uint8_t byteToPrint = *((uint8_t*)((uint64_t)mem + instrPointer + 3));
 					newTerm->Print((char)byteToPrint);
 					instrPointer += 3 + 1;
 				}
@@ -404,6 +412,69 @@ void TaskMAAB::Do()
 					return;
 				}
 			}
+			else if (syscall1 == 2)
+			{
+				if (syscall2 == 1)
+				{
+					uint32_t mSize = *((uint32_t*)((uint64_t)mem + instrPointer + 3));
+					uint64_t mAddr = *((uint64_t*)((uint64_t)mem + instrPointer + 7));
+
+					if (mAddr + 8 >= memLen)
+					{
+						programEnded = true;
+						errCode = 1;
+						errMsg = "ADDRESS OUT OF BOUNDS!";
+						return;
+					}
+					
+					newTerm->Println("\n<MALLOC GO BRRT>");
+
+					void* mRes = memHandler->MallocMem(mSize);
+					
+					if (mRes == NULL)
+					{
+						programEnded = true;
+						errCode = 2;
+						errMsg = "MALLOC FAILED!";
+						return;
+					}
+
+					*((uint64_t*)(mem + mAddr)) = (uint64_t)mRes;
+
+
+					instrPointer += 3 + 12;
+				}
+				else if (syscall2 == 2)
+				{
+					uint64_t fAddr = *((uint64_t*)((uint64_t)mem + instrPointer + 3));
+
+					newTerm->Println("\n<FREE GO BRRT>");
+
+					bool fRes = memHandler->FreeMem((void*)fAddr);
+
+					if (!fRes)
+					{
+						programEnded = true;
+						errCode = 2;
+						errMsg = "FREE FAILED!";
+						return;
+					}
+
+					instrPointer += 3 + 8;
+				}
+
+
+
+				else
+				{
+					programEnded = true;
+					errCode = 1;
+					errMsg = "MEMORY SYSCALL IS NOT SUPPORTED";
+					return;
+				}
+			}
+
+
 
 			else
 			{
@@ -925,7 +996,6 @@ void TaskMAAB::Cast(DatatypeNumber typeFrom, uint64_t addrFrom, DatatypeNumber t
 	//ShowBytes(datatypeSizes[(uint8_t)typeTo], addrTo);
 	//newTerm->Println();
 }
-
 
 void TaskMAAB::Math(OpNumber opNum, DatatypeNumber typeNum, uint64_t addr1, uint64_t addr2, uint64_t addrRes)
 {
@@ -1450,6 +1520,7 @@ void TaskMAAB::Math(OpNumber opNum, DatatypeNumber typeNum, uint64_t addr1, uint
 void TaskMAAB::Free()
 {
 	free((void*)mem);
+	free((void*)memHandler);
 }
 
 

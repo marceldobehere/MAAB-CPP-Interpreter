@@ -55,6 +55,9 @@
     <Filter Include="stubs\Instances\cstr">
       <UniqueIdentifier>{ccb37aea-c520-411b-b299-45b883147184}</UniqueIdentifier>
     </Filter>
+    <Filter Include="maabTask\mem">
+      <UniqueIdentifier>{feabcf5a-7594-499d-9e3f-d485fdcd3c78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -95,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="cstr.cpp">
       <Filter>stubs\Instances\cstr</Filter>
+    </ClCompile>
+    <ClCompile Include="maabMemHandler.cpp">
+      <Filter>maabTask\mem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="cstr.h">
       <Filter>stubs\Instances\cstr</Filter>
+    </ClInclude>
+    <ClInclude Include="maabMemHandler.h">
+      <Filter>maabTask\mem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

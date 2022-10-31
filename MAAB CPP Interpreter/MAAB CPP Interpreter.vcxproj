@@ -142,6 +142,7 @@
     <ClCompile Include="cstr.cpp" />
     <ClCompile Include="cstrTools.cpp" />
     <ClCompile Include="defaultInstance.cpp" />
+    <ClCompile Include="maabMemHandler.cpp" />
     <ClCompile Include="maabTask.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="newTerminalInstance.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="cstrTools.h" />
     <ClInclude Include="defaultInstance.h" />
     <ClInclude Include="heap.h" />
+    <ClInclude Include="maabMemHandler.h" />
     <ClInclude Include="maabTask.h" />
     <ClInclude Include="newTerminalInstance.h" />
     <ClInclude Include="osdata.h" />
