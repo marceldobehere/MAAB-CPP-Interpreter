@@ -8,6 +8,9 @@ using namespace std;
 #include "terminalInstance.h"
 #include "newTerminalInstance.h"
 
+#include <conio.h>
+#include <stdio.h>
+
 
 int main(int argc, char* argv[]) 
 {
@@ -88,7 +91,34 @@ int main(int argc, char* argv[])
 	cout << "\n\n> Running Stuff...\n";
 
 	while (!maabTask->GetDone())
+	{
 		maabTask->Do();
+		if (maabTask->waitInput && !maabTask->gotInput)
+		{
+			int input = _kbhit();
+			if (input == 0)
+				continue;
+			char chr = (char)_getch();
+			//cout << "CHR: '" << chr << "'";
+			if (chr == '\r' || maabTask->memUserInputLen >= 490)
+			{
+				maabTask->gotInput = true;
+			}
+			else if (chr == '\b')
+			{
+				if (maabTask->memUserInputLen > 0)
+				{
+					maabTask->memUserInput[--maabTask->memUserInputLen] = 0;
+					cout << "\b \b";
+				}
+			}
+			else
+			{
+				maabTask->memUserInput[maabTask->memUserInputLen++] = chr;
+				cout << chr;
+			}
+		}
+	}
 
 	maabTask->Free();
 
