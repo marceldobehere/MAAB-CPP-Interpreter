@@ -6,7 +6,7 @@
 namespace MAAB_MEM
 {
 
-    const uint32_t MbMagicNum = 54135372345;
+    const uint32_t MbMagicNum = 54135325;
 
     struct MbSegHdr
     {

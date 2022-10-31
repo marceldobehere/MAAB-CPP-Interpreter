@@ -35,12 +35,12 @@ TaskMAAB::TaskMAAB(uint32_t codeLen, uint8_t* code, Window* window, TerminalInst
 	}
 	//newTerm->Println();
 
-	newTerm->Println("MEM 1: {}", to_string((uint64_t)mem), defCol);
+	//newTerm->Println("MEM 1: {}", to_string((uint64_t)mem), defCol);
 
 	memHandler = (MAAB_MEM::MbMemHandler*)malloc(sizeof(MAAB_MEM::MbMemHandler));
 	*memHandler = MAAB_MEM::MbMemHandler((void*)((uint64_t)mem + codeLen), memLen - codeLen, codeLen);
 
-	newTerm->Println("MEM 2: {}", to_string((uint64_t)memHandler->buffer), defCol);
+	//newTerm->Println("MEM 2: {}", to_string((uint64_t)memHandler->buffer), defCol);
 
 
 
@@ -427,7 +427,7 @@ void TaskMAAB::Do()
 						return;
 					}
 					
-					newTerm->Println("\n<MALLOC GO BRRT>");
+					//newTerm->Println("\n<MALLOC GO BRRT>");
 
 					void* mRes = memHandler->MallocMem(mSize);
 					
@@ -448,7 +448,7 @@ void TaskMAAB::Do()
 				{
 					uint64_t fAddr = *((uint64_t*)((uint64_t)mem + instrPointer + 3));
 
-					newTerm->Println("\n<FREE GO BRRT>");
+					//newTerm->Println("\n<FREE GO BRRT>");
 
 					bool fRes = memHandler->FreeMem((void*)fAddr);
 
