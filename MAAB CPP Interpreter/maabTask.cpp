@@ -1533,7 +1533,7 @@ void TaskMAAB::Math(OpNumber opNum, DatatypeNumber typeNum, uint64_t addr1, uint
 		if (opNum != OpNumber::BOOL_NOT)
 			b = *((bool*)addr2);
 
-		else if (opNum == OpNumber::EQUALS)
+		if (opNum == OpNumber::EQUALS)
 			*((bool*)addrRes) = a == b;
 		else if (opNum == OpNumber::NOT_EQUALS)
 			*((bool*)addrRes) = a != b;
