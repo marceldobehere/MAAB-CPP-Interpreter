@@ -90,6 +90,8 @@ int main(int argc, char* argv[])
 
 	cout << "\n\n> Running Stuff...\n";
 
+	//maabTask->PrintMem();
+
 	while (!maabTask->GetDone())
 	{
 		maabTask->Do();
@@ -119,6 +121,9 @@ int main(int argc, char* argv[])
 			}
 		}
 	}
+
+	//maabTask->PrintMem();
+
 
 	maabTask->Free();
 

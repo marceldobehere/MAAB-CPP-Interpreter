@@ -91,6 +91,7 @@ public:
     TaskMAAB(uint32_t codeLen, uint8_t* code, Window* window, TerminalInstance* newTerm);
     void Do();
     void Free();
+    void PrintMem();
 
 };
 

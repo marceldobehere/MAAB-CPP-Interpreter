@@ -72,6 +72,15 @@ TaskMAAB::TaskMAAB(uint32_t codeLen, uint8_t* code, Window* window, TerminalInst
 		subLastPos[i] = 0;
 }
 
+void TaskMAAB::PrintMem()
+{
+	newTerm->Println("Data:");
+	for (int i = 0; i < 500; i++)
+			newTerm->Print("{} ", to_string(mem[i]), defCol);
+	newTerm->Println();
+}
+
+
 void TaskMAAB::Do()
 {
 	if (waitInput)
@@ -1450,17 +1459,17 @@ void TaskMAAB::Math(OpNumber opNum, DatatypeNumber typeNum, uint64_t addr1, uint
 				*((double*)addrRes) = a / b;
 		}
 		else if (opNum == OpNumber::EQUALS)
-			*((double*)addrRes) = a == b;
+			*((bool*)addrRes) = a == b;
 		else if (opNum == OpNumber::NOT_EQUALS)
-			*((double*)addrRes) = a != b;
+			*((bool*)addrRes) = a != b;
 		else if (opNum == OpNumber::GREATER)
-			*((double*)addrRes) = a > b;
+			*((bool*)addrRes) = a > b;
 		else if (opNum == OpNumber::GREATER_EQUALS)
-			*((double*)addrRes) = a >= b;
+			*((bool*)addrRes) = a >= b;
 		else if (opNum == OpNumber::LESS)
-			*((double*)addrRes) = a < b;
+			*((bool*)addrRes) = a < b;
 		else if (opNum == OpNumber::LESS_EQUAL)
-			*((double*)addrRes) = a <= b;
+			*((bool*)addrRes) = a <= b;
 
 		else
 		{
