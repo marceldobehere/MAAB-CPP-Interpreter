@@ -524,6 +524,8 @@ void NewTerminalInstance::Render()
 
 void NewTerminalInstance::Clear()
 {
+	UpdateConsoleCol();
+	system("cls");
 	if (window == NULL)
 		Panic("Trying to clear window which is NULL!");
 	//AddToStack();
