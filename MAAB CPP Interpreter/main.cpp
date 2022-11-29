@@ -88,6 +88,30 @@ int main(int argc, char* argv[])
 
 	//((NewTerminalInstance*)term->newTermInstance)->Println("This is a test {}!", "LMAO", Colors.bred);
 
+
+
+	//{
+	//	NewTerminalInstance* newTerm = (NewTerminalInstance*)term->newTermInstance;
+	//	//newTerm->UpdateConsoleCol();
+	//	cout << "\n\n\n";
+
+	//	cout << "COL: " << newTerm->foregroundColor << "\n\n";
+	//	newTerm->Println("Das ist ein Test 1!");
+	//	newTerm->UpdateConsoleCol();
+	//	newTerm->Println("Das ist ein Test 2!");
+	//	newTerm->foregroundColor = Colors.cyan;
+	//	newTerm->UpdateConsoleCol();
+	//	newTerm->Println("Das ist ein Test 3!");
+	//	newTerm->foregroundColor = Colors.yellow;
+	//	newTerm->backgroundColor = Colors.dblue;
+	//	newTerm->UpdateConsoleCol();
+	//	newTerm->Println("Das ist ein Test 4!");
+
+
+	//	cout << "\n\n\n";
+	//	return 0;
+	//}
+
 	cout << "\n\n> Running Stuff...\n";
 
 	//maabTask->PrintMem();

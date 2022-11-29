@@ -20,7 +20,7 @@ static struct col
         yellow = 0xffFFD700,
         brown = 0xffA52A2A,
         blue = 0xff000080,
-        dblue = 0xff000030,
+        dblue = 0xff000040,
         bred = 0xffFF0000,
         bblue = 0xff0000FF,
         bgreen = 0xff00FF00;

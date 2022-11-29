@@ -11,6 +11,7 @@
 class NewTerminalInstance : public DefaultInstance
 {
 private:
+    uint32_t oldFgC, oldBgC;
     Window* window;
     bool printUser;
     void WriteStringIntoList(const char* str, const char* var);
@@ -35,6 +36,7 @@ public:
     void Clear();
     void Free();
     void SetWindow(Window* window);
+    void UpdateConsoleCol();
 
     void Println();
     void Print(const char* msg);

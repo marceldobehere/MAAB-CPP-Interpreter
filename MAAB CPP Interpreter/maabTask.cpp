@@ -466,6 +466,29 @@ void TaskMAAB::Do()
 					writeInputInto = rAddr;
 					break;
 				}
+				else if (syscall2 == 5)
+				{
+					uint32_t col = *((uint32_t*)((uint64_t)mem + instrPointer + 3));
+					//newTerm->Println("<PRINTING STR AT {}>", to_string(printAddr), defCol);
+
+					newTerm->foregroundColor = col;
+
+					instrPointer += 3 + 4;
+				}
+				else if (syscall2 == 6)
+				{
+					uint32_t col = *((uint32_t*)((uint64_t)mem + instrPointer + 3));
+					//newTerm->Println("<PRINTING STR AT {}>", to_string(printAddr), defCol);
+
+					newTerm->backgroundColor = col;
+
+					instrPointer += 3 + 4;
+				}
+				else if (syscall2 == 7)
+				{
+					newTerm->Clear();
+					instrPointer += 3 + 0;
+				}
 
 				else
 				{

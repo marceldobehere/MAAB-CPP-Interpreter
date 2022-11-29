@@ -5,6 +5,57 @@
 #include "cstr.h"
 
 #include <iostream>
+#include <Windows.h>
+
+
+int indexFromColor(uint8_t r, uint8_t g, uint8_t b) 
+{
+	int index = (r > 128 || g > 128 || b > 128) ? 8 : 0; // Bright bit
+	index |= (r >= 64) ? 4 : 0; // Red bit
+	index |= (g >= 64) ? 2 : 0; // Green bit
+	index |= (b >= 64) ? 1 : 0; // Blue bit
+	return index;
+}
+
+
+
+
+void NewTerminalInstance::UpdateConsoleCol()
+{
+	CONSOLE_SCREEN_BUFFER_INFOEX info;
+	info.cbSize = sizeof(CONSOLE_SCREEN_BUFFER_INFOEX);
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	GetConsoleScreenBufferInfoEx(hConsole, &info);
+
+	//info.ColorTable[0] = RGB(0, 0, 0);
+	//...
+	//info.ColorTable[3] = RGB(135, 206, 235);
+	//...
+	//info.ColorTable[15] = RGB(25, 25, 25);
+	//
+	SetConsoleScreenBufferInfoEx(hConsole, &info);
+
+	uint8_t fr = (foregroundColor << 0) >> 16;
+	uint8_t fg = (foregroundColor << 0) >> 8;
+	uint8_t fb = (foregroundColor << 0) >> 0;
+
+	uint8_t br = (backgroundColor << 0) >> 16;
+	uint8_t bg = (backgroundColor << 0) >> 8;
+	uint8_t bb = (backgroundColor << 0) >> 0;
+
+	//std::cout << "F: " << foregroundColor << ", B: " << backgroundColor << std::endl;
+	//std::cout << "F R: " << (int)fr << ", G: " << (int)fg << ", B: " << (int)fb << std::endl;
+	//std::cout << "B R: " << (int)br << ", G: " << (int)bg << ", B: " << (int)bb << std::endl;
+
+
+	short fIndex = indexFromColor(fr, fg, fb);
+	short bIndex = indexFromColor(br, bg, bb);
+
+	SetConsoleTextAttribute(hConsole, (bIndex*16)+fIndex);
+}
+
+
 
 //void ClearListList(List<List<ConsoleChar>*>* list)
 //{
@@ -37,6 +88,15 @@ void NewTerminalInstance::WriteStringIntoList(const char* chrs, const char* var)
 
 void NewTerminalInstance::WriteStringIntoList(const char* chrs, const char* var, bool allowEscape)
 {
+	if (oldBgC != backgroundColor || oldFgC != foregroundColor)
+	{
+		oldBgC = backgroundColor;
+		oldFgC = foregroundColor;
+		UpdateConsoleCol();
+	}
+
+
+
 	//AddToStack();
 
 	if ((uint64_t)chrs < 100)
@@ -115,6 +175,7 @@ void NewTerminalInstance::WriteStringIntoList(const char* chrs, const char* var,
 				{
 					index++;
 					fg = ConvertStringToHex(&chrs[index]);
+					UpdateConsoleCol();
 					index += 5;
 				}
 			}
@@ -127,6 +188,7 @@ void NewTerminalInstance::WriteStringIntoList(const char* chrs, const char* var,
 				{
 					index++;
 					bg = ConvertStringToHex(&chrs[index]);
+					UpdateConsoleCol();
 					index += 5;
 				}
 			}
@@ -277,6 +339,7 @@ NewTerminalInstance::NewTerminalInstance()
 	this->window = NULL;
 	backgroundColor = Colors.black;
 	foregroundColor = Colors.white;
+	UpdateConsoleCol();
 	scrollX = 0;
 	scrollY = 0;
 	oldScrollX = 0;

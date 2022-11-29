@@ -17,7 +17,6 @@ private:
     uint64_t writeInputInto;
 
 
-
     Window* window;
     NewTerminalInstance* newTerm;
     TerminalInstance* dTerm;
