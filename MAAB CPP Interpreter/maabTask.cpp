@@ -7,6 +7,9 @@
 #include "terminalInstance.h"
 #include "cstr.h"
 
+#include <chrono>
+#include <thread>
+
 
 TaskMAAB::TaskMAAB(uint32_t codeLen, uint8_t* code, Window* window, TerminalInstance* term)
 {
@@ -488,6 +491,12 @@ void TaskMAAB::Do()
 				{
 					newTerm->Clear();
 					instrPointer += 3 + 0;
+				}
+				else if (syscall2 == 8)
+				{
+					int32_t time = *((int32_t*)((uint64_t)mem + instrPointer + 3));
+					std::this_thread::sleep_for(std::chrono::milliseconds(time));
+					instrPointer += 3 + 4;
 				}
 
 				else
